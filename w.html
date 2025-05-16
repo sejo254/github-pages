@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To My Blessing, Peris ❤️</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      transition: background 1s, color 1s;
+    }
+
+    .heart-container {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      margin-bottom: 30px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .heart {
+      width: 120px;
+      height: 100px;
+      background: crimson;
+      position: absolute;
+      top: 10px;
+      left: 0;
+      transform: rotate(-45deg);
+      box-shadow: 0 0 20px crimson, 0 0 40px crimson;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      width: 120px;
+      height: 100px;
+      background: crimson;
+      position: absolute;
+      border-radius: 50%;
+      box-shadow: 0 0 20px crimson;
+    }
+
+    .heart::before {
+      top: -60px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 60px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: sparkle 2s infinite ease-in-out alternate;
+    }
+
+    .sparkle:nth-child(1) { top: 10px; left: 30px; animation-delay: 0s; }
+    .sparkle:nth-child(2) { top: 20px; right: 25px; animation-delay: 0.5s; }
+    .sparkle:nth-child(3) { bottom: 15px; left: 10px; animation-delay: 1s; }
+    .sparkle:nth-child(4) { bottom: 10px; right: 20px; animation-delay: 1.5s; }
+
+    @keyframes sparkle {
+      0% { transform: scale(0.8); opacity: 0.3; }
+      100% { transform: scale(1.5); opacity: 1; }
+    }
+
+    .message {
+      font-size: 1.4em;
+      width: 85%;
+      max-width: 600px;
+      text-align: center;
+      min-height: 100px;
+      direction: rtl;
+    }
+
+    .typing {
+      border-left: 2px solid currentColor;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .verse {
+      margin-top: 20px;
+      font-size: 1.1em;
+      font-style: italic;
+      text-align: center;
+    }
+
+    .controls {
+      margin-top: 30px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .controls label {
+      font-size: 1em;
+    }
+
+    input[type="color"] {
+      margin-left: 10px;
+      cursor: pointer;
+      height: 30px;
+      width: 40px;
+      border: none;
+      outline: none;
+    }
+  </style>
+</head>
+<body style="background: #1e1e2f; color: white;">
+  <div class="heart-container">
+    <div class="heart"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+  </div>
+
+  <div class="message typing" id="loveMessage"></div>
+  <div class="verse" id="bibleVerse"></div>
+
+  <div class="controls">
+    <label>
+      🌈 Background Color:
+      <input type="color" id="bgColorPicker" value="#1e1e2f">
+    </label>
+    <label>
+      ✍️ Text Color:
+      <input type="color" id="textColorPicker" value="#ffffff">
+    </label>
+  </div>
+
+  <script>
+    const message = "My precious Peris 💖,\nYou are a blessing God placed in my life.\nEvery day, I thank Him for you.\nMay Christ always be the center of our love.\nWith all my heart, Waswa ✝️";
+    const reversedMessage = message.split("").reverse().join("");
+    const messageEl = document.getElementById("loveMessage");
+    const verseEl = document.getElementById("bibleVerse");
+
+    let index = 0;
+
+    function typeMessageBackwards() {
+      if (index < reversedMessage.length) {
+        messageEl.textContent = reversedMessage.slice(reversedMessage.length - index - 1).split("").reverse().join("");
+        index++;
+        setTimeout(typeMessageBackwards, 60);
+      } else {
+        messageEl.classList.remove('typing');
+        verseEl.textContent = "\"Love is patient, love is kind... It always protects, always trusts, always hopes, always perseveres. Love never fails.\" — 1 Corinthians 13:4-8";
+      }
+    }
+
+    typeMessageBackwards();
+
+    // Color pickers
+    document.getElementById("bgColorPicker").addEventListener("input", function () {
+      document.body.style.background = this.value;
+    });
+
+    document.getElementById("textColorPicker").addEventListener("input", function () {
+      document.body.style.color = this.value;
+    });
+  </script>
+</body>
+</html>
